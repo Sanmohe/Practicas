@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="
+    http://www.springframework.org/schema/beans   
+    http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+    http://www.springframework.org/schema/context 
+    http://www.springframework.org/schema/context/spring-context-3.1.xsd
+">
+
+<context:property-placeholder location="classpath:datosEmpresa.propiedades"></context:property-placeholder>
+<!-- Esto carga archivo de propiedades en el XML -->
+
+
+<bean id="informe" class="ioc.Informe"></bean>
+<!-- Este bean crea la dependencia desde la clase Informe -->
+<!-- En CLASS hay que poner la ruta (paquete.clase) de la clase que construye objetos de este tipo -->
+
+
+<bean id="nuevoDirector" class="ioc.DirectorEmpleado" init-method="metodoInit" destroy-method="metodoDestroy" >
+<!-- En INIT-METHOD se introduce el nombre del metodo INIT y en DESTROY-METHOD se introduce el nombre del método DESTROY -->
+<!-- Ambos declarados en la clase DirectorEmpleado -->
+
+	<constructor-arg ref="informe"></constructor-arg>
+	<!-- Dentro del bean de creación del objeto, se configura la dependencia mediante consturctor -->
+	<!-- En REF se introduce el ID del bean de la dependencia -->
+</bean>
+
+
+
+
+</beans>

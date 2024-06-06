@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="
+    http://www.springframework.org/schema/beans   
+    http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+    http://www.springframework.org/schema/context 
+    http://www.springframework.org/schema/context/spring-context-3.1.xsd
+">
+
+
+
+
+<bean id="informe" class="ioc.Informe"></bean>
+<!-- Este bean crea la dependencia desde la clase Informe -->
+<!-- En CLASS hay que poner la ruta (paquete.clase) de la clase que construye objetos de este tipo -->
+
+
+
+
+<bean id="nuevoSecretario" class="ioc.SecretarioEmpleado" scope="singleton">
+<!-- En el atributo SCOPE se le indica a Spring el patron de diseño. Por defecto es singleton, por lo que no haría falta ponerlo-->
+	<property name="informeNuevo" ref="informe"></property>
+	<!-- Dentro del bean de creación del objeto, se configura la dependencia mediante setter-->
+	<!-- En NAME se introduce el nombre del setter sin la palabra "set" y con la primera letra minúscula -->
+	<!-- En REF se introduce el ID del bean de la dependencia -->
+</bean>
+
+
+<bean id="nuevoSecretarioPrototype" class="ioc.SecretarioEmpleado" scope="prototype">
+	<!-- En este caso, se modifica el patrón de diseño a prototype-->
+	<property name="informeNuevo" ref="informe"></property>
+	<!-- Dentro del bean de creación del objeto, se configura la dependencia mediante setter-->
+	<!-- En NAME se introduce el nombre del setter sin la palabra "set" y con la primera letra minúscula -->
+	<!-- En REF se introduce el ID del bean de la dependencia -->
+</bean>
+
+
+
+
+
+
+
+</beans>

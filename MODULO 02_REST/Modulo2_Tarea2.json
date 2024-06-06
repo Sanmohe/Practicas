@@ -1,0 +1,1500 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Modulo REST - Leccion2 - Tarea",
+    "description": "Se plantean distintos Endpoints para el modelo de datos proporcionado y se documenta con OpenAPI (Swagger).",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.a926022/v1/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "project",
+      "description": "Maneja la entidad Proyecto"
+    },
+    {
+      "name": "code",
+      "description": "Maneja la entidad Código"
+    },
+    {
+      "name": "detail",
+      "description": "Maneja la entidad Detalle"
+    },
+    {
+      "name": "tag",
+      "description": "Maneja la entidad Etiqueta"
+    },
+    {
+      "name": "user",
+      "description": "Maneja la entidad Usuario"
+    },
+    {
+      "name": "blog",
+      "description": "Maneja la entidad Blog"
+    },
+    {
+      "name": "article",
+      "description": "Maneja la entidad Articulo"
+    },
+    {
+      "name": "phone",
+      "description": "Maneja la entidad Telefono"
+    }
+  ],
+  "paths": {
+    "/project": {
+      "get": {
+        "tags": [
+          "project"
+        ],
+        "summary": "Consultar la lista de proyectos",
+        "responses": {
+          "200": {
+            "description": "Lista de proyectos registrados generada"
+          },
+          "404": {
+            "$ref": "#/components/responses/noEncontrado"
+          },
+          "500": {
+            "$ref": "#/components/responses/errorServidor"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "project"
+        ],
+        "summary": "Crear un nuevo proyecto",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProjectBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Proyecto creado"
+          },
+          "400": {
+            "$ref": "#/components/responses/solicitudIncorrecta"
+          },
+          "500": {
+            "$ref": "#/components/responses/errorServidor"
+          }
+        }
+      }
+    },
+    "/project/{projectId}": {
+      "get": {
+        "tags": [
+          "project"
+        ],
+        "summary": "Consultar un proyecto por su ID",
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "ID del proyecto",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Consulta del proyecto realizada"
+          },
+          "404": {
+            "$ref": "#/components/responses/noEncontrado"
+          },
+          "500": {
+            "$ref": "#/components/responses/errorServidor"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "project"
+        ],
+        "summary": "Actualizar un proyecto existente por su ID",
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "ID del proyecto",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProjectBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Proyecto actualizado"
+          },
+          "404": {
+            "$ref": "#/components/responses/noEncontrado"
+          },
+          "500": {
+            "$ref": "#/components/responses/errorServidor"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "project"
+        ],
+        "summary": "Eliminar un proyecto por su ID",
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "ID del proyecto",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Proyecto eliminado"
+          },
+          "404": {
+            "$ref": "#/components/responses/noEncontrado"
+          },
+          "500": {
+            "$ref": "#/components/responses/errorServidor"
+          }
+        }
+      }
+    },
+    "/code": {
+      "get": {
+        "tags": [
+          "code"
+        ],
+        "summary": "Consultar la lista de códigos",
+        "responses": {
+          "200": {
+            "description": "Lista de códigos generada"
+          },
+          "404": {
+            "$ref": "#/components/responses/noEncontrado"
+          },
+          "500": {
+            "$ref": "#/components/responses/errorServidor"
+          }
+        }
+      }
+    },
+    "/code/{projectId}": {
+      "get": {
+        "tags": [
+          "code"
+        ],
+        "summary": "Consultar todos los códigos asociados a un proyecto",
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Consulta de códigos del proyecto realizada"
+          },
+          "404": {
+            "$ref": "#/components/responses/noEncontrado"
+          },
+          "500": {
+            "$ref": "#/components/responses/errorServidor"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "code"
+        ],
+        "summary": "Crear un nuevo código asociado a un proyecto",
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CodeBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Código creado"
+          },
+          "400": {
+            "$ref": "#/components/responses/solicitudIncorrecta"
+          },
+          "500": {
+            "$ref": "#/components/responses/errorServidor"
+          }
+        }
+      }
+    },
+    "/code/{codeId}": {
+      "get": {
+        "tags": [
+          "code"
+        ],
+        "summary": "Consultar un código por su Id",
+        "parameters": [
+          {
+            "name": "codeId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Consulta de código realizada"
+          },
+          "404": {
+            "$ref": "#/components/responses/noEncontrado"
+          },
+          "500": {
+            "$ref": "#/components/responses/errorServidor"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "code"
+        ],
+        "summary": "Actualizar un código por su Id",
+        "parameters": [
+          {
+            "name": "codeId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CodeBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Código actualizado"
+          },
+          "404": {
+            "$ref": "#/components/responses/noEncontrado"
+          },
+          "500": {
+            "$ref": "#/components/responses/errorServidor"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "code"
+        ],
+        "summary": "Eliminar un código por su Id",
+        "parameters": [
+          {
+            "name": "codeId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Código eliminado"
+          },
+          "404": {
+            "$ref": "#/components/responses/noEncontrado"
+          },
+          "500": {
+            "$ref": "#/components/responses/errorServidor"
+          }
+        }
+      }
+    },
+    "/detail": {
+      "get": {
+        "tags": [
+          "detail"
+        ],
+        "summary": "Consultar la lista de detalles",
+        "responses": {
+          "200": {
+            "description": "Lista de detalles generada"
+          },
+          "404": {
+            "$ref": "#/components/responses/noEncontrado"
+          },
+          "500": {
+            "$ref": "#/components/responses/errorServidor"
+          }
+        }
+      }
+    },
+    "/detail/{projectId}": {
+      "get": {
+        "tags": [
+          "detail"
+        ],
+        "summary": "Consultar el detalle asociado a un proyecto",
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Consulta de detalle realizada"
+          },
+          "404": {
+            "$ref": "#/components/responses/noEncontrado"
+          },
+          "500": {
+            "$ref": "#/components/responses/errorServidor"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "detail"
+        ],
+        "summary": "Crear un nuevo detalle asociado a un proyecto",
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DetailBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Detalle generado"
+          },
+          "400": {
+            "$ref": "#/components/responses/solicitudIncorrecta"
+          },
+          "500": {
+            "$ref": "#/components/responses/errorServidor"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "detail"
+        ],
+        "summary": "Actualizar un detalle asociado a un Id de proyecto",
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DetailBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Detalle actualizado"
+          },
+          "404": {
+            "$ref": "#/components/responses/noEncontrado"
+          },
+          "500": {
+            "$ref": "#/components/responses/errorServidor"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "detail"
+        ],
+        "summary": "Eliminar un detalle asociado a un proyecto",
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Detalle eliminado"
+          },
+          "404": {
+            "$ref": "#/components/responses/noEncontrado"
+          },
+          "500": {
+            "$ref": "#/components/responses/errorServidor"
+          }
+        }
+      }
+    },
+    "/blog": {
+      "get": {
+        "tags": [
+          "blog"
+        ],
+        "summary": "Consultar la lista de blogs registrados",
+        "responses": {
+          "200": {
+            "description": "Lista de blogs generada"
+          },
+          "404": {
+            "$ref": "#/components/responses/noEncontrado"
+          },
+          "500": {
+            "$ref": "#/components/responses/errorServidor"
+          }
+        }
+      }
+    },
+    "/blog/{userId}": {
+      "post": {
+        "tags": [
+          "blog"
+        ],
+        "summary": "Crear un nuevo blog",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "ID del usuario propiertario del blog",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BlogBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Blog creado"
+          },
+          "400": {
+            "$ref": "#/components/responses/solicitudIncorrecta"
+          },
+          "500": {
+            "$ref": "#/components/responses/errorServidor"
+          }
+        }
+      }
+    },
+    "/blog/{blogId}": {
+      "get": {
+        "tags": [
+          "blog"
+        ],
+        "summary": "Consultar un blog por su ID",
+        "parameters": [
+          {
+            "name": "blogId",
+            "in": "path",
+            "description": "ID del blog",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Consulta del blog realizada"
+          },
+          "404": {
+            "$ref": "#/components/responses/noEncontrado"
+          },
+          "500": {
+            "$ref": "#/components/responses/errorServidor"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "blog"
+        ],
+        "summary": "Actualizar un blog existente por su ID",
+        "parameters": [
+          {
+            "name": "blogId",
+            "in": "path",
+            "description": "ID del blog",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BlogBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Blog actualizado"
+          },
+          "404": {
+            "$ref": "#/components/responses/noEncontrado"
+          },
+          "500": {
+            "$ref": "#/components/responses/errorServidor"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "blog"
+        ],
+        "summary": "Eliminar un blog por su ID",
+        "parameters": [
+          {
+            "name": "blogId",
+            "in": "path",
+            "description": "ID del blog",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Blog eliminado"
+          },
+          "404": {
+            "$ref": "#/components/responses/noEncontrado"
+          },
+          "500": {
+            "$ref": "#/components/responses/errorServidor"
+          }
+        }
+      }
+    },
+    "/article": {
+      "get": {
+        "tags": [
+          "article"
+        ],
+        "summary": "Consultar la lista de artículos",
+        "responses": {
+          "200": {
+            "description": "Lista de artículos generada"
+          },
+          "404": {
+            "$ref": "#/components/responses/noEncontrado"
+          },
+          "500": {
+            "$ref": "#/components/responses/errorServidor"
+          }
+        }
+      }
+    },
+    "/article/{blogId}": {
+      "get": {
+        "tags": [
+          "article"
+        ],
+        "summary": "Consultar los artículos asociados a un proyecto",
+        "parameters": [
+          {
+            "name": "blogId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Consulta de articulos realizada"
+          },
+          "404": {
+            "$ref": "#/components/responses/noEncontrado"
+          },
+          "500": {
+            "$ref": "#/components/responses/errorServidor"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "article"
+        ],
+        "summary": "Crear un nuevo artículo asociado a un blog",
+        "parameters": [
+          {
+            "name": "blogId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ArticleBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Artículo creado"
+          },
+          "400": {
+            "$ref": "#/components/responses/solicitudIncorrecta"
+          },
+          "500": {
+            "$ref": "#/components/responses/errorServidor"
+          }
+        }
+      }
+    },
+    "/article/{articleId}": {
+      "put": {
+        "tags": [
+          "article"
+        ],
+        "summary": "Actualizar un artículo",
+        "parameters": [
+          {
+            "name": "articleId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ArticleBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Artículo actualizado"
+          },
+          "404": {
+            "$ref": "#/components/responses/noEncontrado"
+          },
+          "500": {
+            "$ref": "#/components/responses/errorServidor"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "article"
+        ],
+        "summary": "Eliminar un artículo",
+        "parameters": [
+          {
+            "name": "articleId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Artículo eliminado"
+          },
+          "404": {
+            "$ref": "#/components/responses/noEncontrado"
+          },
+          "500": {
+            "$ref": "#/components/responses/errorServidor"
+          }
+        }
+      }
+    },
+    "/user": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Consultar la lista de usuarios",
+        "responses": {
+          "200": {
+            "description": "Lista de usuarios generada"
+          },
+          "404": {
+            "$ref": "#/components/responses/noEncontrado"
+          },
+          "500": {
+            "$ref": "#/components/responses/errorServidor"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Crear un nuevo usuario",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Detalle generado"
+          },
+          "400": {
+            "$ref": "#/components/responses/solicitudIncorrecta"
+          },
+          "500": {
+            "$ref": "#/components/responses/errorServidor"
+          }
+        }
+      }
+    },
+    "/user/{userId}": {
+      "put": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Actualizar un usuario determinado",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Usuario actualizado"
+          },
+          "404": {
+            "$ref": "#/components/responses/noEncontrado"
+          },
+          "500": {
+            "$ref": "#/components/responses/errorServidor"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Eliminar un usuario determinado",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Usuario eliminado"
+          },
+          "404": {
+            "$ref": "#/components/responses/noEncontrado"
+          },
+          "500": {
+            "$ref": "#/components/responses/errorServidor"
+          }
+        }
+      }
+    },
+    "/user/{projectId}": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Consultar los usuarios asociado a un proyecto",
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Consulta de usuarios realizada"
+          },
+          "404": {
+            "$ref": "#/components/responses/noEncontrado"
+          },
+          "500": {
+            "$ref": "#/components/responses/errorServidor"
+          }
+        }
+      }
+    },
+    "/user/{blogId}": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Consultar el usuario asociado a un blog",
+        "parameters": [
+          {
+            "name": "blogId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Consulta de usuario realizada"
+          },
+          "404": {
+            "$ref": "#/components/responses/noEncontrado"
+          },
+          "500": {
+            "$ref": "#/components/responses/errorServidor"
+          }
+        }
+      }
+    },
+    "/tag": {
+      "get": {
+        "tags": [
+          "tag"
+        ],
+        "summary": "Consultar la lista de etiquetas",
+        "responses": {
+          "200": {
+            "description": "Lista de etiquetas generada"
+          },
+          "404": {
+            "$ref": "#/components/responses/noEncontrado"
+          },
+          "500": {
+            "$ref": "#/components/responses/errorServidor"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "tag"
+        ],
+        "summary": "Crear una nueva etiqueta",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TagBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Etiqueta creada"
+          },
+          "400": {
+            "$ref": "#/components/responses/solicitudIncorrecta"
+          },
+          "500": {
+            "$ref": "#/components/responses/errorServidor"
+          }
+        }
+      }
+    },
+    "/tag/{tagId}": {
+      "put": {
+        "tags": [
+          "tag"
+        ],
+        "summary": "Actualizar una etiqueta determinada",
+        "parameters": [
+          {
+            "name": "tagId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TagBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Etiqueta actualizada"
+          },
+          "404": {
+            "$ref": "#/components/responses/noEncontrado"
+          },
+          "500": {
+            "$ref": "#/components/responses/errorServidor"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "tag"
+        ],
+        "summary": "Eliminar una etiqueta",
+        "parameters": [
+          {
+            "name": "tagId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Etiqueta eliminada"
+          },
+          "404": {
+            "$ref": "#/components/responses/noEncontrado"
+          },
+          "500": {
+            "$ref": "#/components/responses/errorServidor"
+          }
+        }
+      }
+    },
+    "/tag/{projectId}": {
+      "get": {
+        "tags": [
+          "tag"
+        ],
+        "summary": "Consultar las etiquetas asociadas a un proyecto",
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Consulta de etiquetas realizada"
+          },
+          "404": {
+            "$ref": "#/components/responses/noEncontrado"
+          },
+          "500": {
+            "$ref": "#/components/responses/errorServidor"
+          }
+        }
+      }
+    },
+    "/tag/{articleId}": {
+      "get": {
+        "tags": [
+          "tag"
+        ],
+        "summary": "Consultar las etiquetas asociadas a un artículo",
+        "parameters": [
+          {
+            "name": "articleId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Consulta de etiquetas realizada"
+          },
+          "404": {
+            "$ref": "#/components/responses/noEncontrado"
+          },
+          "500": {
+            "$ref": "#/components/responses/errorServidor"
+          }
+        }
+      }
+    },
+    "/phone": {
+      "get": {
+        "tags": [
+          "phone"
+        ],
+        "summary": "Consultar la lista de teléfonos",
+        "responses": {
+          "200": {
+            "description": "Lista de teléfonos generada"
+          },
+          "404": {
+            "$ref": "#/components/responses/noEncontrado"
+          },
+          "500": {
+            "$ref": "#/components/responses/errorServidor"
+          }
+        }
+      }
+    },
+    "/phone/{userId}": {
+      "get": {
+        "tags": [
+          "phone"
+        ],
+        "summary": "Consultar el teléfono asociado a un usuario",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Consulta de teléfono realizada"
+          },
+          "404": {
+            "$ref": "#/components/responses/noEncontrado"
+          },
+          "500": {
+            "$ref": "#/components/responses/errorServidor"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "phone"
+        ],
+        "summary": "Crear un nuevo teléfono asociado a un usuario",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PhoneBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Teléfono creado"
+          },
+          "400": {
+            "$ref": "#/components/responses/solicitudIncorrecta"
+          },
+          "500": {
+            "$ref": "#/components/responses/errorServidor"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "phone"
+        ],
+        "summary": "Actualizar un teléfono asociado a un usuario",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PhoneBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Teléfono actualizado"
+          },
+          "404": {
+            "$ref": "#/components/responses/noEncontrado"
+          },
+          "500": {
+            "$ref": "#/components/responses/errorServidor"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "phone"
+        ],
+        "summary": "Eliminar un teléfono asociado a un usuario",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Teléfono eliminado"
+          },
+          "404": {
+            "$ref": "#/components/responses/noEncontrado"
+          },
+          "500": {
+            "$ref": "#/components/responses/errorServidor"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "responses": {
+      "noEncontrado": {
+        "description": "Recurso no encontrado"
+      },
+      "solicitudIncorrecta": {
+        "description": "Los datos enviados son incorrecos o falta algún dato"
+      },
+      "errorServidor": {
+        "description": "Error interno del servidor"
+      }
+    },
+    "schemas": {
+      "ProjectBody": {
+        "type": "object",
+        "properties": {
+          "projectId": {
+            "type": "integer",
+            "description": "Identificador de proyecto"
+          },
+          "description": {
+            "type": "string",
+            "description": "Descripción del proyecto"
+          },
+          "language": {
+            "type": "string",
+            "description": "Lenguaje de programación"
+          },
+          "open": {
+            "type": "string",
+            "description": "Estado del proyecto"
+          }
+        }
+      },
+      "CodeBody": {
+        "type": "object",
+        "properties": {
+          "projectId": {
+            "type": "integer",
+            "description": "Identificador del proyecto asociado"
+          },
+          "codeId": {
+            "type": "integer",
+            "description": "Código"
+          },
+          "package": {
+            "type": "string",
+            "description": "Paquete"
+          },
+          "file": {
+            "type": "string",
+            "description": "Archivo"
+          }
+        }
+      },
+      "DetailBody": {
+        "type": "object",
+        "properties": {
+          "projectId": {
+            "type": "integer",
+            "description": "Identificador del proyecto asociado"
+          },
+          "date": {
+            "type": "string",
+            "description": "Fecha de proyecto"
+          },
+          "content": {
+            "type": "string",
+            "description": "Contenido"
+          },
+          "type": {
+            "type": "string",
+            "description": "Tipo de proyecto"
+          },
+          "budget": {
+            "type": "number",
+            "description": "Presupuesto"
+          }
+        }
+      },
+      "BlogBody": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "integer",
+            "description": "Identificador del usuario asociado"
+          },
+          "blogId": {
+            "type": "integer",
+            "description": "Identificador del blog"
+          },
+          "title": {
+            "type": "string",
+            "description": "Título del blog."
+          },
+          "date": {
+            "type": "string",
+            "description": "Fecha de creación"
+          }
+        }
+      },
+      "ArticleBody": {
+        "type": "object",
+        "properties": {
+          "blogId": {
+            "type": "integer",
+            "description": "Identificador del blog asociado"
+          },
+          "articleId": {
+            "type": "integer",
+            "description": "Identificador del artículo"
+          },
+          "title": {
+            "type": "string",
+            "description": "Título del artículo"
+          },
+          "abstract": {
+            "type": "string",
+            "description": "Resumen del artículo"
+          },
+          "content": {
+            "type": "string",
+            "description": "Contenido del artículo"
+          }
+        }
+      },
+      "UserBody": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "integer",
+            "description": "Identificador del usuario"
+          },
+          "projectIds": {
+            "type": "integer",
+            "description": "Identificadores de los proyectos a los que pertenece el usuario"
+          },
+          "nick": {
+            "type": "string",
+            "description": "Nick del usuario"
+          },
+          "name": {
+            "type": "string",
+            "description": "Nombre del usuario"
+          }
+        }
+      },
+      "TagBody": {
+        "type": "object",
+        "properties": {
+          "tagId": {
+            "type": "integer",
+            "description": "Identificador de la etiqueta"
+          },
+          "projectIds": {
+            "type": "integer",
+            "description": "Identificadores de los proyectos a los que pertenece la etiqueta"
+          },
+          "articlesIds": {
+            "type": "integer",
+            "description": "Identificadores de los artículos a los que pertenece la etiqueta"
+          },
+          "label": {
+            "type": "string",
+            "description": "Valor de etiqueta"
+          },
+          "date": {
+            "type": "string",
+            "description": "Fecha de etiqueta"
+          }
+        }
+      },
+      "PhoneBody": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "integer",
+            "description": "Valor"
+          },
+          "type": {
+            "type": "integer",
+            "description": "Tipo de teléfono"
+          }
+        }
+      }
+    }
+  }
+}

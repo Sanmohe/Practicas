@@ -1,0 +1,4 @@
+#Tomcat publish data
+#Fri May 03 13:35:29 CEST 2024
+org.eclipse.jst.jee.server\:/binary\:C\:\\Users\\a926220\\JavaEclipse\\Spring_MVC\\src\\main\\webapp\\WEB-INF\\lib\\spring-web-5.1.4.RELEASE.jar=WEB-INF/lib/spring-web-5.1.4.RELEASE.jar
+org.eclipse.jst.jee.server\:/binary\:C\:\\Users\\a926220\\JavaEclipse\\Spring_MVC\\src\\main\\webapp\\WEB-INF\\lib\\spring-web-5.1.4.RELEASE-sources.jar=WEB-INF/lib/spring-web-5.1.4.RELEASE-sources.jar

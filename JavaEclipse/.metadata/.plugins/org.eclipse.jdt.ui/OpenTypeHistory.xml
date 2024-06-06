@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<typeInfoHistroy>
+    <typeInfo handle="=Spring/src&lt;ioc{CreacionInformes.java[CreacionInformes" modifiers="513" timestamp="1712920905272"/>
+    <typeInfo handle="=IoC/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.app.ioc{Utensilios.java[Utensilios" modifiers="513" timestamp="1713431320396"/>
+    <typeInfo handle="=IoC/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;ioc.noFramework{InterfazUsuario.java[InterfazUsuario" modifiers="513" timestamp="1713439577971"/>
+    <typeInfo handle="=IoC/C:\/Users\/a926220\/.m2\/repository\/org\/springframework\/spring-beans\/4.3.3.RELEASE\/spring-beans-4.3.3.RELEASE.jar=/maven.pomderived=/true=/=/maven.groupId=/org.springframework=/=/maven.artifactId=/spring-beans=/=/maven.version=/4.3.3.RELEASE=/=/maven.scope=/compile=/=/maven.pomderived=/true=/&lt;org.springframework.beans.factory.support(InstantiationStrategy.class[InstantiationStrategy" modifiers="1537" timestamp="1713431234357"/>
+    <typeInfo handle="=IoC/C:\/Users\/a926220\/.m2\/repository\/org\/springframework\/spring-aop\/4.3.3.RELEASE\/spring-aop-4.3.3.RELEASE.jar=/maven.pomderived=/true=/=/maven.groupId=/org.springframework=/=/maven.artifactId=/spring-aop=/=/maven.version=/4.3.3.RELEASE=/=/maven.scope=/compile=/=/maven.pomderived=/true=/&lt;org.springframework.aop.aspectj(InstantiationModelAwarePointcutAdvisor.class[InstantiationModelAwarePointcutAdvisor" modifiers="1537" timestamp="1713431232803"/>
+    <typeInfo handle="=IoC/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;tareaLeccion1_3{Instrumento.java[Instrumento" modifiers="513" timestamp="1713513829400"/>
+    <typeInfo handle="=SpringAnotaciones/src&lt;ejemploAnotaciones{Empleados.java[Empleados" modifiers="513" timestamp="1714038498375"/>
+    <typeInfo handle="=SpringAnotaciones/libs\/spring-jdbc-5.1.4.RELEASE.jar&lt;org.springframework.jdbc.datasource.embedded(EmbeddedDatabaseConfigurer.class[EmbeddedDatabaseConfigurer" modifiers="1537" timestamp="1712913325156"/>
+    <typeInfo handle="=SpringAnotaciones/src&lt;ejemploAnotaciones{CrearInformeFinanciero.java[CrearInformeFinanciero" modifiers="513" timestamp="1714038498486"/>
+    <typeInfo handle="=SpringGitHub/src&lt;Leccion6tareaFinal{Sonido.java[Sonido" modifiers="513" timestamp="1714127632824"/>
+</typeInfoHistroy>
